@@ -27,7 +27,7 @@ O **PyMusic** é uma aplicação web leve que é executada diretamente na sua m�
 <ul>
   <li><strong>Backend:</strong> Python, Flask, Flask-SQLAlchemy e API pública do GitHub</li>
   <li><strong>Banco de Dados:</strong> SQLite (com geração automática do arquivo <code>music.db</code>)</li>
-  <li><strong>Frontend:</strong> HTML5, CSS3, Bootstrap 5, JavaScript Vanilla</li>
+  <li><strong>Frontend:</strong> HTML5, CSS3, Bootstrap 5, JavaScript</li>
   <li><strong>Gerenciamento de Pacotes:</strong> uv</li>
 </ul>
 
