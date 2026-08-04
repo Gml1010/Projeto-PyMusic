@@ -38,7 +38,7 @@ O **PyMusic** é uma aplicação web leve que é executada diretamente na sua m�
 ### 1. Clone o repositório
 <p>Abra o seu terminal e clone o projeto:</p>
 <pre><code class="language-bash">git clone https://github.com/Gml1010/Projeto-PyMusic
-cd musicas-pymusic
+cd Projeto-PyMusic
 </code></pre>
 
 ### 2. Configure o ambiente virtual e instale as dependências
