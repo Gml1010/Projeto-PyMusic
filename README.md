@@ -19,21 +19,36 @@ O **PyMusic** é uma aplicação web leve que é executada diretamente na sua m�
   <li><strong>Página de Artistas:</strong> Navegue pelas suas músicas de forma fácil.</li>
   <li><strong>Player Interno Dinâmico:</strong> Um player fixo no rodapé.</li>
   <li><strong>Histórico de Reprodução:</strong> Registrode data e hora de todas as faixas que você ouviu.</li>
-  <li><strong>Hospedagem feita por você:</strong> Otimizado para usar o <em>GitHub Releases</em> como um servidor gratuito para os arquivos de áudio.</li>
+  <li><strong>Hospedagem feita por você:</strong> Otimizado para usar o <em>Repositório do GitHub</em> como um servidor gratuito para os arquivos de áudio.</li>
 </ul>
 
 ## 🛠️ Tecnologias Utilizadas
 
 <ul>
-  <li><strong>Backend:</strong> Python, Flask, Flask-SQLAlchemy</li>
+  <li><strong>Backend:</strong> Python, Flask, Flask-SQLAlchemy e API pública do GitHub</li>
   <li><strong>Banco de Dados:</strong> SQLite (com geração automática do arquivo <code>music.db</code>)</li>
   <li><strong>Frontend:</strong> HTML5, CSS3, Bootstrap 5, JavaScript Vanilla</li>
   <li><strong>Gerenciamento de Pacotes:</strong> uv</li>
 </ul>
 
+## 🔄 Teste do Sync
+
+<p>Para testar a sincronização com os repositórios do GitHub Siga os passos:</p>
+
+# 1. Vá na opção de sincronizar repositório.
+
+# 2. Repositório de teste
+
+<p>Link do Repositório do GitHub</p>
+https://github.com/Gml1010/Teste-sync
+<p>Nome do Artista / Banda</p>
+Michael-Jackson
+<p>Link da Foto de Capa (Opcional)</p>
+https://images.suamusica.com.br/P-PS32976whGM4gT-K_UeJ69CII=/240x240/filters:format(webp)/47004357/4350830/cd_cover.jpg
+
 <h2>🚀 Como Instalar e Rodar Localmente</h2>
 
-<p>Siga o passo a passo abaixo para rodar o PyMusic na sua máquina:</p>
+<p>Siga o passo a passo abaixo para rodar o PyMusic localmente:</p>
 
 # Clone o repositório
 <p>Abra o seu terminal e clone o projeto:</p>
