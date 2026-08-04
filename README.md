@@ -41,7 +41,7 @@ O **PyMusic** é uma aplicação web leve e responsiva de streaming de música. 
 cd musicas-pymusic
 </code></pre>
 
-<h3>2. Configure o ambiente virtual e instale as dependências</h3>
+# Configure o ambiente virtual e instale as dependências
 <p>Utilize o <code>uv</code> para configurar o ambiente e instalar os pacotes necessários:</p>
 <pre><code class="language-bash"># Cria o ambiente virtual isolado
 uv venv
@@ -50,7 +50,7 @@ uv venv
 uv pip install Flask Flask-SQLAlchemy
 </code></pre>
 
-<h3>3. Ative o ambiente virtual</h3>
+# Ative o ambiente virtual
 <p>Escolha o comando correspondente ao seu sistema operacional:</p>
 <pre><code class="language-bash"># Se estiver no Windows:
 .venv\Scripts\activate
