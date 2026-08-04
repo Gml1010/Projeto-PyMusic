@@ -40,3 +40,18 @@ Abra o seu terminal e clone o projeto:
 ```bash
 git clone [https://github.com/SEU_USUARIO/musicas-pymusic.git](https://github.com/SEU_USUARIO/musicas-pymusic.git)
 cd musicas-pymusic
+
+# Cria o ambiente virtual isolado
+uv venv
+
+# Instala o Flask e o SQLAlchemy no ambiente
+uv pip install Flask Flask-SQLAlchemy
+
+# Se estiver no Windows:
+.venv\Scripts\activate
+
+# Se estiver no Linux/Mac:
+source .venv/bin/activate
+
+# Inicia o servidor do banco de dados e a aplicação web
+python app.py
