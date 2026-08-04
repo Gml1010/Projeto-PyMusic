@@ -1,0 +1,94 @@
+{% extends 'base.html' %}
+{% block title %}{{ artist.name }} - PyMusic{% endblock %}
+
+{% block content %}
+<div class="mb-3">
+    <a href="{{ url_for('index') }}" class="btn btn-sm btn-outline-secondary">← Voltar para Bandas</a>
+</div>
+
+<div class="row mb-5 align-items-center">
+    <div class="col-md-3 text-center text-md-start">
+        <img src="{{ artist.image }}" class="img-fluid rounded-circle shadow" style="width: 220px; height: 220px; object-fit: cover;" alt="{{ artist.name }}">
+    </div>
+    <div class="col-md-9 mt-4 mt-md-0">
+        <h1 class="fw-bold" style="font-size: 3rem;">{{ artist.name }}</h1>
+        <p class="fs-5 mt-3" style="color: #cccccc; line-height: 1.6;">{{ artist.bio }}</p>
+    </div>
+</div>
+
+<hr style="border-color: #333;" class="mb-5">
+
+<h4 class="mb-4 fw-bold">Músicas ({{ artist.songs|length }})</h4>
+<div class="row row-cols-2 row-cols-md-4 row-cols-lg-6 g-4" style="padding-bottom: 120px;">
+    {% for song in artist.songs %}
+    <div class="col">
+        <div class="card h-100 bg-transparent border-0 text-center music-card">
+            <div class="position-relative d-inline-block w-100">
+                <img src="{{ song.album_cover }}" class="card-img-top rounded img-fluid" alt="{{ song.title }}">
+                
+                <button class="btn btn-success position-absolute bottom-0 end-0 m-2 rounded-circle play-btn shadow" 
+                        data-id="{{ song.id }}"
+                        data-url="{{ song.audio_url }}" 
+                        data-title="{{ song.title }}" 
+                        data-artist="{{ song.band.name }}" 
+                        data-cover="{{ song.album_cover }}"
+                        style="width: 40px; height: 40px; display: flex; align-items: center; justify-content: center;">
+                    ▶
+                </button>
+            </div>
+            <div class="card-body px-0 pt-3 pb-0 text-start">
+                <h6 class="card-title text-truncate mb-1 fw-bold">{{ song.title }}</h6>
+                <p class="card-text small text-truncate artist-text mb-2" style="color: #aaaaaa;">{{ song.band.name }}</p>
+            </div>
+        </div>
+    </div>
+    {% endfor %}
+</div>
+
+<div id="bottom-player" class="fixed-bottom bg-dark text-light p-2 d-none shadow-lg border-top border-secondary">
+    <div class="container d-flex align-items-center justify-content-between flex-wrap">
+        <div class="d-flex align-items-center gap-3 mb-2 mb-md-0" style="min-width: 200px;">
+            <img id="player-cover" src="" alt="Capa" class="rounded" style="width: 50px; height: 50px; object-fit: cover;">
+            <div class="text-truncate">
+                <h6 id="player-title" class="mb-0 fw-bold text-truncate">Título</h6>
+                <small id="player-artist" class="text-truncate" style="color: #aaaaaa;">Artista</small>
+            </div>
+        </div>
+        <audio id="main-audio" controls class="flex-grow-1 mx-md-4" style="max-width: 600px;">
+            <source src="" type="audio/mpeg">
+        </audio>
+        <div class="d-none d-md-block" style="min-width: 200px;"></div>
+    </div>
+</div>
+
+<script>
+    document.addEventListener("DOMContentLoaded", function() {
+        const playButtons = document.querySelectorAll('.play-btn');
+        const bottomPlayer = document.getElementById('bottom-player');
+        const mainAudio = document.getElementById('main-audio');
+        const playerCover = document.getElementById('player-cover');
+        const playerTitle = document.getElementById('player-title');
+        const playerArtist = document.getElementById('player-artist');
+
+        playButtons.forEach(button => {
+            button.addEventListener('click', function() {
+                const songId = this.getAttribute('data-id');
+                const url = this.getAttribute('data-url');
+                const title = this.getAttribute('data-title');
+                const artist = this.getAttribute('data-artist');
+                const cover = this.getAttribute('data-cover');
+
+                playerCover.src = cover;
+                playerTitle.textContent = title;
+                playerArtist.textContent = artist;
+                
+                mainAudio.src = url;
+                bottomPlayer.classList.remove('d-none');
+                mainAudio.play();
+
+                fetch(`/record_play/${songId}`, { method: 'POST' });
+            });
+        });
+    });
+</script>
+{% endblock %}

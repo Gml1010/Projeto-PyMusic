@@ -1,0 +1,42 @@
+{% extends 'base.html' %}
+{% block title %}Bandas - PyMusic{% endblock %}
+
+{% block content %}
+<div class="d-flex justify-content-between align-items-center mb-4">
+    <h3 class="fw-bold m-0">Artistas e Bandas</h3>
+    <a href="{{ url_for('history') }}" class="btn btn-outline-light">🕒 Histórico</a>
+</div>
+
+<div class="d-flex flex-column gap-3">
+    {% for artist in artists %}
+    <a href="{{ url_for('artist_page', id=artist.id) }}" class="text-decoration-none text-light">
+        <div class="card bg-transparent border-secondary hover-effect" style="border: 1px solid #333; transition: 0.3s;">
+            <div class="row g-0 align-items-center p-2">
+                
+                <div class="col-auto">
+                    <img src="{{ artist.image }}" class="rounded-circle shadow m-2" style="width: 80px; height: 80px; object-fit: cover;" alt="{{ artist.name }}">
+                </div>
+                
+                <div class="col">
+                    <div class="card-body py-2">
+                        <h4 class="card-title fw-bold mb-1">{{ artist.name }}</h4>
+                        <p class="card-text text-truncate text-muted mb-0" style="max-width: 700px;">{{ artist.bio }}</p>
+                    </div>
+                </div>
+                
+                <div class="col-auto pe-4 text-muted fs-4">
+                    ➔
+                </div>
+            </div>
+        </div>
+    </a>
+    {% endfor %}
+</div>
+
+<style>
+    .hover-effect:hover { 
+        background-color: #1a1a1a !important; 
+        transform: translateX(10px); 
+    }
+</style>
+{% endblock %}
