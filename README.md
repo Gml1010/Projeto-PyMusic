@@ -39,11 +39,11 @@ O **PyMusic** é uma aplicação web leve que é executada diretamente na sua m�
 
 # 2. Repositório de teste
 
-<p>Link do Repositório do GitHub</p>
+<p>Em "Link do Repositório do GitHub" cole:</p>
 https://github.com/Gml1010/Teste-sync
-<p>Nome do Artista / Banda</p>
+<p>Em "Nome do Artista / Banda" cole:</p>
 Michael-Jackson
-<p>Link da Foto de Capa (Opcional)</p>
+<p>Em "Link da Foto de Capa (Opcional)" cole:</p>
 https://images.suamusica.com.br/P-PS32976whGM4gT-K_UeJ69CII=/240x240/filters:format(webp)/47004357/4350830/cd_cover.jpg
 
 <h2>🚀 Como Instalar e Rodar Localmente</h2>
