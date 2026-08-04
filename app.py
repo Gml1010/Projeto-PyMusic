@@ -122,8 +122,44 @@ if __name__ == '__main__':
         db.session.commit()
         
         sample_songs = [
+            # ----- QUEEN -----
             Song(title="Love of My Life", album_cover=capa_queen, audio_url="https://github.com/Gml1010/musicas-pymusic/releases/download/Add/Love.of.My.Life.mp3", artist_id=queen.id),
-            Song(title="Back In Black", album_cover=capa_acdc, audio_url="https://github.com/Gml1010/musicas-pymusic/releases/download/ad/Back.In.Black.mp3", artist_id=acdc.id)
+            Song(title="Radio Ga Ga", album_cover=capa_queen, audio_url="https://github.com/Gml1010/musicas-pymusic/releases/download/Add/Radio.Ga.Ga.mp3", artist_id=queen.id),
+            Song(title="Somebody To Love", album_cover=capa_queen, audio_url="https://github.com/Gml1010/musicas-pymusic/releases/download/Add/Somebody.To.Love.mp3", artist_id=queen.id),
+            Song(title="Under Pressure", album_cover=capa_queen, audio_url="https://github.com/Gml1010/musicas-pymusic/releases/download/Add/Under.Pressure.mp3", artist_id=queen.id),
+            Song(title="We Are The Champions", album_cover=capa_queen, audio_url="https://github.com/Gml1010/musicas-pymusic/releases/download/Add/We.Are.The.Champions.mp3", artist_id=queen.id),
+            Song(title="We Will Rock You", album_cover=capa_queen, audio_url="https://github.com/Gml1010/musicas-pymusic/releases/download/Add/We.Will.Rock.You.mp3", artist_id=queen.id),
+            Song(title="Another One Bites The Dust", album_cover=capa_queen, audio_url="https://github.com/Gml1010/musicas-pymusic/releases/download/Add/Another.One.Bites.The.Dust.mp3", artist_id=queen.id),
+            Song(title="Bohemian Rhapsody", album_cover=capa_queen, audio_url="https://github.com/Gml1010/musicas-pymusic/releases/download/Add/Bohemian.Rhapsody.mp3", artist_id=queen.id),
+            Song(title="Don't Stop Me Now", album_cover=capa_queen, audio_url="https://github.com/Gml1010/musicas-pymusic/releases/download/Add/Dont.Stop.Me.Now.mp3", artist_id=queen.id),
+            Song(title="Forever", album_cover=capa_queen, audio_url="https://github.com/Gml1010/musicas-pymusic/releases/download/Add/For.ever.mp3", artist_id=queen.id),
+            Song(title="I Want To Break Free", album_cover=capa_queen, audio_url="https://github.com/Gml1010/musicas-pymusic/releases/download/Add/I.Want.To.Break.Free.mp3", artist_id=queen.id),
+            Song(title="I Was Born To Love You", album_cover=capa_queen, audio_url="https://github.com/Gml1010/musicas-pymusic/releases/download/Add/I.Was.Born.To.Love.You.mp3", artist_id=queen.id),
+            Song(title="Killer Queen", album_cover=capa_queen, audio_url="https://github.com/Gml1010/musicas-pymusic/releases/download/Add/Killer.Queen.mp3", artist_id=queen.id),
+            
+            # ----- AC/DC -----
+            Song(title="Are You Ready", album_cover=capa_acdc, audio_url="https://github.com/Gml1010/musicas-pymusic/releases/download/ad/Are.You.Ready.mp3", artist_id=acdc.id),
+            Song(title="Back In Black", album_cover=capa_acdc, audio_url="https://github.com/Gml1010/musicas-pymusic/releases/download/ad/Back.In.Black.mp3", artist_id=acdc.id),
+            Song(title="Beating Around the Bush", album_cover=capa_acdc, audio_url="https://github.com/Gml1010/musicas-pymusic/releases/download/ad/Beating.Around.the.Bush.mp3", artist_id=acdc.id),
+            Song(title="Black Ice", album_cover=capa_acdc, audio_url="https://github.com/Gml1010/musicas-pymusic/releases/download/ad/Black.Ice.mp3", artist_id=acdc.id),
+            Song(title="Demon Fire", album_cover=capa_acdc, audio_url="https://github.com/Gml1010/musicas-pymusic/releases/download/ad/Demon.Fire.mp3", artist_id=acdc.id),
+            Song(title="Fire Your Guns", album_cover=capa_acdc, audio_url="https://github.com/Gml1010/musicas-pymusic/releases/download/ad/Fire.Your.Guns.mp3", artist_id=acdc.id),
+            Song(title="Get It Hot", album_cover=capa_acdc, audio_url="https://github.com/Gml1010/musicas-pymusic/releases/download/ad/Get.It.Hot.mp3", artist_id=acdc.id),
+            Song(title="Girls Got Rhythm", album_cover=capa_acdc, audio_url="https://github.com/Gml1010/musicas-pymusic/releases/download/ad/Girls.Got.Rhythm.mp3", artist_id=acdc.id),
+            Song(title="Hells Bells", album_cover=capa_acdc, audio_url="https://github.com/Gml1010/musicas-pymusic/releases/download/ad/Hells.Bells.mp3", artist_id=acdc.id),
+            Song(title="High Voltage", album_cover=capa_acdc, audio_url="https://github.com/Gml1010/musicas-pymusic/releases/download/ad/High.Voltage.mp3", artist_id=acdc.id),
+            Song(title="Highway to Hell", album_cover=capa_acdc, audio_url="https://github.com/Gml1010/musicas-pymusic/releases/download/ad/Highway.to.Hell.mp3", artist_id=acdc.id),
+            Song(title="If You Want Blood You've Got It", album_cover=capa_acdc, audio_url="https://github.com/Gml1010/musicas-pymusic/releases/download/ad/If.You.Want.Blood.You.ve.Got.It.mp3", artist_id=acdc.id),
+            Song(title="Love Hungry Man", album_cover=capa_acdc, audio_url="https://github.com/Gml1010/musicas-pymusic/releases/download/ad/Love.Hungry.Man.mp3", artist_id=acdc.id),
+            Song(title="Night Prowler", album_cover=capa_acdc, audio_url="https://github.com/Gml1010/musicas-pymusic/releases/download/ad/Night.Prowler.mp3", artist_id=acdc.id),
+            Song(title="Rock N Roll Train", album_cover=capa_acdc, audio_url="https://github.com/Gml1010/musicas-pymusic/releases/download/ad/Rock.N.Roll.Train.mp3", artist_id=acdc.id),
+            Song(title="Shot Down In Flames", album_cover=capa_acdc, audio_url="https://github.com/Gml1010/musicas-pymusic/releases/download/ad/Shot.Down.In.Flames.mp3", artist_id=acdc.id),
+            Song(title="T.N.T.", album_cover=capa_acdc, audio_url="https://github.com/Gml1010/musicas-pymusic/releases/download/ad/T.N.T.mp3", artist_id=acdc.id),
+            Song(title="Thunderstruck", album_cover=capa_acdc, audio_url="https://github.com/Gml1010/musicas-pymusic/releases/download/ad/Thunderstruck.mp3", artist_id=acdc.id),
+            Song(title="Touch Too Much", album_cover=capa_acdc, audio_url="https://github.com/Gml1010/musicas-pymusic/releases/download/ad/Touch.Too.Much.mp3", artist_id=acdc.id),
+            Song(title="Walk All Over You", album_cover=capa_acdc, audio_url="https://github.com/Gml1010/musicas-pymusic/releases/download/ad/Walk.All.Over.You.mp3", artist_id=acdc.id),
+            Song(title="War Machine", album_cover=capa_acdc, audio_url="https://github.com/Gml1010/musicas-pymusic/releases/download/ad/War.Machine.mp3", artist_id=acdc.id),
+            Song(title="You Shook Me All Night Long", album_cover=capa_acdc, audio_url="https://github.com/Gml1010/musicas-pymusic/releases/download/ad/You.Shook.Me.All.Night.Long.mp3", artist_id=acdc.id)
         ]
         db.session.bulk_save_objects(sample_songs)
         db.session.commit()
