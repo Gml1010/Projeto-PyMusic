@@ -35,7 +35,7 @@ O **PyMusic** é uma aplicação web leve e responsiva de streaming de música. 
 
 <p>Siga o passo a passo abaixo para rodar o PyMusic na sua máquina:</p>
 
-<h3>1. Clone o repositório</h3>
+# Clone o repositório
 <p>Abra o seu terminal e clone o projeto:</p>
 <pre><code class="language-bash">git clone https://github.com/Gml1010/musicas-pymusic.git
 cd musicas-pymusic
@@ -59,7 +59,7 @@ uv pip install Flask Flask-SQLAlchemy
 source .venv/bin/activate
 </code></pre>
 
-<h3>4. Inicie a aplicação</h3>
+ # Inicie a aplicação 
 <p>Execute o script principal para criar o banco de dados e iniciar o servidor:</p>
 <pre><code class="language-bash">python app.py
 </code></pre>
