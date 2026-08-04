@@ -19,7 +19,7 @@ O **PyMusic** é uma aplicação web leve que é executada diretamente na sua m�
   <li><strong>Página de Artistas:</strong> Navegue pelas suas músicas de forma fácil.</li>
   <li><strong>Player Interno Dinâmico:</strong> Um player fixo no rodapé.</li>
   <li><strong>Histórico de Reprodução:</strong> Registro de data e hora de todas as faixas que você ouviu.</li>
-  <li><strong>Hospedagem feita por você:</strong> Otimizado para usar o <em>Repositório do GitHub</em> como um servidor gratuito para os arquivos de áudio.</li>
+  <li><strong>Hospedagem feita por você:</strong> Feito para usar o <em>Repositório do GitHub</em> como um servidor gratuito para os arquivos de áudio.</li>
 </ul>
 
 ## 🛠️ Tecnologias Utilizadas
