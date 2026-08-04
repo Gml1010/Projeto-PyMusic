@@ -31,27 +31,37 @@ O **PyMusic** é uma aplicação web leve e responsiva de streaming de música. 
   <li><strong>Gerenciamento de Pacotes:</strong> uv</li>
 </ul>
 
-## 🚀 Como Instalar e Rodar Localmente
+<h2>🚀 Como Instalar e Rodar Localmente</h2>
 
-Siga o passo a passo abaixo para rodar o PyMusic na sua máquina.
+<p>Siga o passo a passo abaixo para rodar o PyMusic na sua máquina:</p>
 
-### 1. Clone o repositório
-Abra o seu terminal e clone o projeto:
-```bash
-git clone [https://github.com/SEU_USUARIO/musicas-pymusic.git](https://github.com/SEU_USUARIO/musicas-pymusic.git)
+<h3>1. Clone o repositório</h3>
+<p>Abra o seu terminal e clone o projeto:</p>
+<pre><code class="language-bash">git clone https://github.com/Gml1010/musicas-pymusic.git
 cd musicas-pymusic
+</code></pre>
 
-# Cria o ambiente virtual isolado
+<h3>2. Configure o ambiente virtual e instale as dependências</h3>
+<p>Utilize o <code>uv</code> para configurar o ambiente e instalar os pacotes necessários:</p>
+<pre><code class="language-bash"># Cria o ambiente virtual isolado
 uv venv
 
 # Instala o Flask e o SQLAlchemy no ambiente
 uv pip install Flask Flask-SQLAlchemy
+</code></pre>
 
-# Se estiver no Windows:
+<h3>3. Ative o ambiente virtual</h3>
+<p>Escolha o comando correspondente ao seu sistema operacional:</p>
+<pre><code class="language-bash"># Se estiver no Windows:
 .venv\Scripts\activate
 
 # Se estiver no Linux/Mac:
 source .venv/bin/activate
+</code></pre>
 
-# Inicia o servidor do banco de dados e a aplicação web
-python app.py
+<h3>4. Inicie a aplicação</h3>
+<p>Execute o script principal para criar o banco de dados e iniciar o servidor:</p>
+<pre><code class="language-bash">python app.py
+</code></pre>
+
+<p>Pronto! Agora basta abrir o seu navegador e acessar: <a href="http://localhost:5000" target="_blank">http://localhost:5000</a></p>
