@@ -122,7 +122,7 @@ if __name__ == '__main__':
         db.session.commit()
         
         sample_songs = [
-            # ----- QUEEN -----
+
             Song(title="Love of My Life", album_cover=capa_queen, audio_url="https://github.com/Gml1010/musicas-pymusic/releases/download/Add/Love.of.My.Life.mp3", artist_id=queen.id),
             Song(title="Radio Ga Ga", album_cover=capa_queen, audio_url="https://github.com/Gml1010/musicas-pymusic/releases/download/Add/Radio.Ga.Ga.mp3", artist_id=queen.id),
             Song(title="Somebody To Love", album_cover=capa_queen, audio_url="https://github.com/Gml1010/musicas-pymusic/releases/download/Add/Somebody.To.Love.mp3", artist_id=queen.id),
@@ -137,7 +137,7 @@ if __name__ == '__main__':
             Song(title="I Was Born To Love You", album_cover=capa_queen, audio_url="https://github.com/Gml1010/musicas-pymusic/releases/download/Add/I.Was.Born.To.Love.You.mp3", artist_id=queen.id),
             Song(title="Killer Queen", album_cover=capa_queen, audio_url="https://github.com/Gml1010/musicas-pymusic/releases/download/Add/Killer.Queen.mp3", artist_id=queen.id),
             
-            # ----- AC/DC -----
+
             Song(title="Are You Ready", album_cover=capa_acdc, audio_url="https://github.com/Gml1010/musicas-pymusic/releases/download/ad/Are.You.Ready.mp3", artist_id=acdc.id),
             Song(title="Back In Black", album_cover=capa_acdc, audio_url="https://github.com/Gml1010/musicas-pymusic/releases/download/ad/Back.In.Black.mp3", artist_id=acdc.id),
             Song(title="Beating Around the Bush", album_cover=capa_acdc, audio_url="https://github.com/Gml1010/musicas-pymusic/releases/download/ad/Beating.Around.the.Bush.mp3", artist_id=acdc.id),
