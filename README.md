@@ -46,7 +46,7 @@ cd Projeto-PyMusic
 <pre><code class="language-bash"># Cria o ambiente virtual isolado
 uv venv
 
-# Instala o Flask e o SQLAlchemy no ambiente
+# Instalar o Flask e o SQLAlchemy no ambiente
 uv pip install Flask Flask-SQLAlchemy
 </code></pre>
 
