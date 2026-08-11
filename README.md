@@ -48,6 +48,8 @@ uv venv
 
 # Instalar o Flask e o SQLAlchemy no ambiente
 uv pip install Flask Flask-SQLAlchemy
+
+pip install tzdata
 </code></pre>
 
 ### 3. Ative o ambiente virtual
