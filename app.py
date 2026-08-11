@@ -1,6 +1,7 @@
 from flask import Flask, render_template, jsonify, request, redirect, url_for
 from flask_sqlalchemy import SQLAlchemy
 from datetime import datetime
+from zoneinfo import ZoneInfo
 import urllib.request
 import json
 
@@ -26,7 +27,7 @@ class Song(db.Model):
 class History(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     song_id = db.Column(db.Integer, db.ForeignKey('song.id'), nullable=False)
-    played_at = db.Column(db.DateTime, default=datetime.utcnow)
+    played_at = db.Column(db.DateTime, default=datetime.now(ZoneInfo("America/Sao_Paulo")))
     song = db.relationship('Song', backref='plays')
 
 @app.route('/')
