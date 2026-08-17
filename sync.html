@@ -1,0 +1,44 @@
+{% extends 'base.html' %}
+{% block title %}Sincronizar Repositório - PyMusic{% endblock %}
+
+{% block content %}
+<div class="row justify-content-center">
+    <div class="col-md-6">
+        <div class="card bg-dark border-secondary text-light p-4 shadow">
+            <h3 class="fw-bold mb-3">🔄 Sincronizar Músicas do GitHub</h3>
+            <p class="text-muted small">Cole o link do seu repositório público do GitHub que contenha músicas nas <strong>Releases</strong>. O sistema vai varrer os arquivos .mp3 automaticamente.</p>
+
+            {% if message %}
+            <div class="alert alert-info alert-dismissible fade show" role="alert">
+                {{ message }}
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+            {% endif %}
+
+            <!-- O data-turbo="false" impede que o Turbo intercepte o POST, 
+                 garantindo que o Flask processe o envio corretamente -->
+            <form method="POST" data-turbo="false">
+                <div class="mb-3">
+                    <label class="form-label fw-bold">Link do Repositório do GitHub</label>
+                    <input type="text" class="form-control bg-black text-light border-secondary" name="repo_url" placeholder="Ex: https://github.com/Gml1010/musicas-pymusic" required>
+                </div>
+
+                <div class="mb-3">
+                    <label class="form-label fw-bold">Nome do Artista / Banda</label>
+                    <input type="text" class="form-control bg-black text-light border-secondary" name="artist_name" placeholder="Ex: Guns N' Roses" required>
+                </div>
+
+                <div class="mb-3">
+                    <label class="form-label fw-bold">Link da Foto de Capa (Opcional)</label>
+                    <input type="text" class="form-control bg-black text-light border-secondary" name="artist_image" placeholder="Cole o link de uma imagem da web">
+                </div>
+
+                <div class="d-flex justify-content-between align-items-center mt-4">
+                    <a href="{{ url_for('index') }}" class="btn btn-outline-secondary">← Voltar</a>
+                    <button type="submit" class="btn btn-success px-4">Sincronizar Músicas</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock %}

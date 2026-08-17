@@ -1,0 +1,48 @@
+{% extends 'base.html' %}
+{% block title %}{{ artist.name }} - PyMusic{% endblock %}
+
+{% block content %}
+<div class="mb-3">
+    <a href="{{ url_for('index') }}" class="btn btn-sm btn-outline-secondary">← Voltar para Bandas</a>
+</div>
+
+<div class="row mb-5 align-items-center">
+    <div class="col-md-3 text-center text-md-start">
+        <img src="{{ artist.image }}" class="img-fluid rounded-circle shadow" style="width: 220px; height: 220px; object-fit: cover;" alt="{{ artist.name }}">
+    </div>
+    <div class="col-md-9 mt-4 mt-md-0">
+        <h1 class="fw-bold" style="font-size: 3rem;">{{ artist.name }}</h1>
+        <p class="fs-5 mt-3" style="color: #cccccc; line-height: 1.6;">{{ artist.bio }}</p>
+    </div>
+</div>
+
+<hr style="border-color: #333;" class="mb-5">
+
+<h4 class="mb-4 fw-bold">Músicas ({{ artist.songs|length }})</h4>
+<!-- Removido o padding-bottom excessivo, pois já colocamos no body do base.html -->
+<div class="row row-cols-2 row-cols-md-4 row-cols-lg-6 g-4">
+    {% for song in artist.songs %}
+    <div class="col">
+        <div class="card h-100 bg-transparent border-0 text-center music-card">
+            <div class="position-relative d-inline-block w-100">
+                <img src="{{ song.album_cover }}" class="card-img-top rounded img-fluid" alt="{{ song.title }}">
+                
+                <button class="btn btn-success position-absolute bottom-0 end-0 m-2 rounded-circle play-btn shadow" 
+                        data-id="{{ song.id }}"
+                        data-url="{{ song.audio_url }}" 
+                        data-title="{{ song.title }}" 
+                        data-artist="{{ song.band.name }}" 
+                        data-cover="{{ song.album_cover }}"
+                        style="width: 40px; height: 40px; display: flex; align-items: center; justify-content: center;">
+                    ▶
+                </button>
+            </div>
+            <div class="card-body px-0 pt-3 pb-0 text-start">
+                <h6 class="card-title text-truncate mb-1 fw-bold">{{ song.title }}</h6>
+                <p class="card-text small text-truncate artist-text mb-2" style="color: #aaaaaa;">{{ song.band.name }}</p>
+            </div>
+        </div>
+    </div>
+    {% endfor %}
+</div>
+{% endblock %}
