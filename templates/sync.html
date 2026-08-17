@@ -15,7 +15,9 @@
             </div>
             {% endif %}
 
-            <form method="POST">
+            <!-- O data-turbo="false" impede que o Turbo intercepte o POST, 
+                 garantindo que o Flask processe o envio corretamente -->
+            <form method="POST" data-turbo="false">
                 <div class="mb-3">
                     <label class="form-label fw-bold">Link do Repositório do GitHub</label>
                     <input type="text" class="form-control bg-black text-light border-secondary" name="repo_url" placeholder="Ex: https://github.com/Gml1010/musicas-pymusic" required>

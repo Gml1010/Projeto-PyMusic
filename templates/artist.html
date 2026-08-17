@@ -19,7 +19,8 @@
 <hr style="border-color: #333;" class="mb-5">
 
 <h4 class="mb-4 fw-bold">Músicas ({{ artist.songs|length }})</h4>
-<div class="row row-cols-2 row-cols-md-4 row-cols-lg-6 g-4" style="padding-bottom: 120px;">
+<!-- Removido o padding-bottom excessivo, pois já colocamos no body do base.html -->
+<div class="row row-cols-2 row-cols-md-4 row-cols-lg-6 g-4">
     {% for song in artist.songs %}
     <div class="col">
         <div class="card h-100 bg-transparent border-0 text-center music-card">
@@ -44,51 +45,4 @@
     </div>
     {% endfor %}
 </div>
-
-<div id="bottom-player" class="fixed-bottom bg-dark text-light p-2 d-none shadow-lg border-top border-secondary">
-    <div class="container d-flex align-items-center justify-content-between flex-wrap">
-        <div class="d-flex align-items-center gap-3 mb-2 mb-md-0" style="min-width: 200px;">
-            <img id="player-cover" src="" alt="Capa" class="rounded" style="width: 50px; height: 50px; object-fit: cover;">
-            <div class="text-truncate">
-                <h6 id="player-title" class="mb-0 fw-bold text-truncate">Título</h6>
-                <small id="player-artist" class="text-truncate" style="color: #aaaaaa;">Artista</small>
-            </div>
-        </div>
-        <audio id="main-audio" controls class="flex-grow-1 mx-md-4" style="max-width: 600px;">
-            <source src="" type="audio/mpeg">
-        </audio>
-        <div class="d-none d-md-block" style="min-width: 200px;"></div>
-    </div>
-</div>
-
-<script>
-    document.addEventListener("DOMContentLoaded", function() {
-        const playButtons = document.querySelectorAll('.play-btn');
-        const bottomPlayer = document.getElementById('bottom-player');
-        const mainAudio = document.getElementById('main-audio');
-        const playerCover = document.getElementById('player-cover');
-        const playerTitle = document.getElementById('player-title');
-        const playerArtist = document.getElementById('player-artist');
-
-        playButtons.forEach(button => {
-            button.addEventListener('click', function() {
-                const songId = this.getAttribute('data-id');
-                const url = this.getAttribute('data-url');
-                const title = this.getAttribute('data-title');
-                const artist = this.getAttribute('data-artist');
-                const cover = this.getAttribute('data-cover');
-
-                playerCover.src = cover;
-                playerTitle.textContent = title;
-                playerArtist.textContent = artist;
-                
-                mainAudio.src = url;
-                bottomPlayer.classList.remove('d-none');
-                mainAudio.play();
-
-                fetch(`/record_play/${songId}`, { method: 'POST' });
-            });
-        });
-    });
-</script>
 {% endblock %}
