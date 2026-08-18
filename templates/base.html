@@ -3,15 +3,14 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    
-    <!-- Impede que o Turbo use uma versão antiga (cacheada) da página de bandas onde o player estava oculto -->
     <meta name="turbo-cache-control" content="no-cache">
     
     <title>{% block title %}PyMusic{% endblock %}</title>
+    
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
     
-    <!-- Importa o Turbo do Hotwired para transformar em SPA -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js" defer></script>
     <script type="module" src="https://cdn.skypack.dev/@hotwired/turbo"></script>
     
     <style>
@@ -26,7 +25,6 @@
         .nav-link { color: #b3b3b3 !important; font-weight: 500; transition: color 0.2s; }
         .nav-link:hover, .nav-link.active { color: #ffffff !important; }
         
-        /* ESTILO DO PLAYER (Efeito Glassmorphism) */
         .modern-player {
             background: rgba(24, 24, 24, 0.85); 
             backdrop-filter: blur(16px); 
@@ -34,7 +32,7 @@
             border-top: 1px solid rgba(255, 255, 255, 0.08);
             box-shadow: 0 -10px 40px rgba(0, 0, 0, 0.5); 
             z-index: 1050;
-            transition: all 0.3s ease-in-out;
+            transition: all 0.5s ease-in-out;
         }
 
         .player-cover-img {
@@ -45,10 +43,10 @@
             box-shadow: 0 4px 12px rgba(0,0,0,0.4);
         }
 
-        .player-info { max-width: 250px; }
+        .player-info { max-width: 300px; }
 
         audio {
-            height: 45px;
+            height: 50px;
             border-radius: 30px;
             outline: none;
         }
@@ -76,7 +74,6 @@
         {% block content %}{% endblock %}
     </main>
 
-    <!-- PLAYER GLOBAL COM DATA-TURBO-PERMANENT -->
     <div id="bottom-player" data-turbo-permanent class="fixed-bottom modern-player py-3 d-none">
         <div class="container-fluid px-md-4">
             <div class="row align-items-center">
@@ -90,49 +87,54 @@
                 </div>
 
                 <div class="col-12 col-md-6 d-flex justify-content-center">
-                    <audio id="main-audio" controls autoplay class="w-100" style="max-width: 600px;">
+                    <audio id="main-audio" controls autoplay class="w-100" style="max-width: 1000px;">
                         <source src="" type="audio/mpeg">
                     </audio>
                 </div>
-
+                
                 <div class="col-12 col-md-3 d-none d-md-flex justify-content-end align-items-center gap-3">
-                    <button class="btn btn-link text-secondary p-0 fs-5 btn-hover-white" title="Letra"><i class="bi bi-mic"></i></button>
-                    <button class="btn btn-link text-secondary p-0 fs-5 btn-hover-white" title="Fila de Reprodução"><i class="bi bi-music-note-list"></i></button>
-                    <button class="btn btn-link text-secondary p-0 fs-5 btn-hover-white" title="Volume Dispositivos"><i class="bi bi-speaker"></i></button>
+                    <div class="dropdown">
+                        <button class="btn btn-link text-secondary p-0 fs-5 btn-hover-white" 
+                                type="button" 
+                                id="btnDispositivos" 
+                                data-bs-toggle="dropdown" 
+                                aria-expanded="false" 
+                                title="Selecionar Saída de Áudio">
+                            <i class="bi bi-speaker"></i>
+                        </button>
+                        <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="btnDispositivos" id="lista-dispositivos">
+                            <li><h6 class="dropdown-header">Dispositivos de Saída</h6></li>
+                            <li><button class="dropdown-item active" type="button" data-device-id="">Padrão do Sistema</button></li>
+                        </ul>
+                    </div>
                 </div>
-
+                
             </div>
         </div>
     </div>
 
-    <!-- SCRIPT GLOBAL BLINDADO -->
     <script>
-        // O `if` previne que o Turbo crie múltiplos eventListeners ao navegar pelas abas
         if (!window.playerInitialized) {
             window.playerInitialized = true;
 
-            // Função que força a exibição do player se a música estiver rodando
             const enforcePlayerVisibility = () => {
                 if (sessionStorage.getItem('playerActive') === 'true') {
                     const player = document.getElementById('bottom-player');
                     if (player) {
                         player.classList.remove('d-none');
-                        player.classList.add('d-block'); // Força a regra CSS de exibição
+                        player.classList.add('d-block'); 
                     }
                 }
             };
 
-            // Dispara a checagem em todas as fases de renderização do Turbo
             document.addEventListener('turbo:load', enforcePlayerVisibility);
             document.addEventListener('turbo:render', enforcePlayerVisibility);
             
-            // Restaura os dados apenas no primeiro carregamento puro (ex: ao dar F5)
             document.addEventListener('DOMContentLoaded', () => {
                 enforcePlayerVisibility();
                 const savedSong = sessionStorage.getItem('currentSong');
                 const mainAudio = document.getElementById('main-audio');
                 
-                // Só injeta os dados se o áudio estiver vazio, evitando reiniciar a música ao navegar
                 if (savedSong && !mainAudio.getAttribute('src')) {
                     const song = JSON.parse(savedSong);
                     document.getElementById('player-cover').src = song.cover;
@@ -140,9 +142,10 @@
                     document.getElementById('player-artist').textContent = song.artist;
                     mainAudio.src = song.url;
                 }
+                
+                carregarDispositivosDeSaida();
             });
 
-            // Lógica do botão de PLAY (delegação de evento no documento)
             document.addEventListener("click", function(event) {
                 const button = event.target.closest('.play-btn');
                 
@@ -159,11 +162,9 @@
                     const playerTitle = document.getElementById('player-title');
                     const playerArtist = document.getElementById('player-artist');
 
-                    // 1. Grava no cache do navegador (fundamental para o Turbo)
                     sessionStorage.setItem('playerActive', 'true');
                     sessionStorage.setItem('currentSong', JSON.stringify({ title, artist, cover, url }));
 
-                    // 2. Atualiza a interface
                     playerCover.src = cover;
                     playerTitle.textContent = title;
                     playerArtist.textContent = artist;
@@ -175,19 +176,80 @@
                         ], { duration: 350, easing: 'cubic-bezier(0.2, 0.8, 0.2, 1)' });
                     }
                     
-                    // 3. Exibe o player na força
                     bottomPlayer.classList.remove('d-none');
                     bottomPlayer.classList.add('d-block');
                     
-                    // 4. Toca a música
                     mainAudio.src = url;
                     mainAudio.play().catch(err => console.log("Erro no autoplay:", err));
                     
-                    // 5. Salva histórico
                     fetch(`/record_play/${songId}`, { method: 'POST' })
                         .catch(err => console.error("Erro ao salvar histórico:", err));
                 }
             });
+
+
+            async function carregarDispositivosDeSaida() {
+                const listaDispositivos = document.getElementById('lista-dispositivos');
+                const btnDispositivos = document.getElementById('btnDispositivos');
+
+                if (!('setSinkId' in HTMLMediaElement.prototype)) {
+                    btnDispositivos.disabled = true;
+                    listaDispositivos.innerHTML = '<li><span class="dropdown-item text-muted">Navegador não suportado</span></li>';
+                    return;
+                }
+
+                try {
+                    await navigator.mediaDevices.getUserMedia({ audio: true }).catch(() => {});
+                    const dispositivos = await navigator.mediaDevices.enumerateDevices();
+                    const saidasAudio = dispositivos.filter(d => d.kind === 'audiooutput');
+                    
+                    listaDispositivos.innerHTML = '<li><h6 class="dropdown-header">Dispositivos de Saída</h6></li>';
+                    
+                    saidasAudio.forEach((dispositivo, index) => {
+                        const li = document.createElement('li');
+                        const botao = document.createElement('button');
+                        botao.className = 'dropdown-item';
+                        
+                        if (dispositivo.deviceId === 'default' || (index === 0 && !dispositivo.deviceId)) {
+                             botao.classList.add('active');
+                        }
+
+                        botao.type = 'button';
+                        botao.setAttribute('data-device-id', dispositivo.deviceId);
+                        botao.textContent = dispositivo.label || `Saída de Áudio (${dispositivo.deviceId.slice(0, 5)}...)`;
+                        li.appendChild(botao);
+                        listaDispositivos.appendChild(li);
+                    });
+                    
+                    configurarTrocaDeDispositivo();
+                } catch (erro) {
+                    console.error('Erro ao listar dispositivos de áudio:', erro);
+                }
+            }
+
+            function configurarTrocaDeDispositivo() {
+                const listaDispositivos = document.getElementById('lista-dispositivos');
+                const mainAudio = document.getElementById('main-audio');
+
+                listaDispositivos.addEventListener('click', async (evento) => {
+                    const botaoClicado = evento.target.closest('.dropdown-item');
+                    if (!botaoClicado || botaoClicado.classList.contains('text-muted')) return;
+                    
+                    const deviceId = botaoClicado.getAttribute('data-device-id');
+                    try {
+
+                        await mainAudio.setSinkId(deviceId);
+                        
+                        listaDispositivos.querySelectorAll('.dropdown-item').forEach(el => el.classList.remove('active'));
+                        botaoClicado.classList.add('active');
+                        
+                        console.log('Saída de áudio alterada para:', deviceId);
+                    } catch (erro) {
+                        console.error('Não foi possível alterar o dispositivo de saída:', erro);
+                        alert('Erro ao redirecionar o áudio para o dispositivo escolhido.');
+                    }
+                });
+            }
         }
     </script>
 </body>
